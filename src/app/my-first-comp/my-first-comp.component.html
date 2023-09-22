@@ -1,0 +1,52 @@
+<div class="flex flex-col space-y-2 border border-gray-300 max-w-2xl mx-auto bg-gray-100 rounded-md py-2 px-6">
+  <h2>Simple form</h2>
+
+  <form (ngSubmit)="onSubmit()"  action="" class="flex flex-col space-y-2">
+    <div class="flex gap-1">
+      <label for="name">Name:</label>
+      <input class="bg-gray-50" id="name" name="name" type="text" [(ngModel)]="name" required>
+    </div>
+    <div class="flex gap-1">
+      <label for="email">Email:</label>
+      <input class="bg-gray-50" id="email" type="email" name="email" [(ngModel)]="email" required>
+    </div>
+    <div class="flex gap-1">
+      <label for="message">Message:</label>
+      <textarea class="bg-gray-50" id="message" [(ngModel)]="message" name="message" required></textarea>
+    </div>
+    <button type="submit" class="hover:cursor-pointer bg-amber-300">Submit</button>
+  </form>
+
+<!--  <div *ngIf="isSubmitted">-->
+<!--    <h3>Form data</h3>-->
+<!--    <p><strong>Name: </strong>{{name}}</p>-->
+<!--    <p><strong>Email: </strong>{{email}}</p>-->
+<!--    <p><strong>Message: </strong>{{message}}</p>-->
+
+<!--    <table class="table">-->
+<!--      <thead class="">-->
+<!--      <tr>-->
+<!--        <th>Name</th>-->
+<!--        <th>Email</th>-->
+<!--        <th>Message</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--        <tr *ngFor="let msg of messages">-->
+<!--          <td>{{msg.name}}</td>-->
+<!--          <td>{{msg.email}}</td>-->
+<!--          <td>{{msg.message}}</td>-->
+<!--        </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+<!--  </div>-->
+
+  <div class="flex flex-row justify-between flex-wrap" *ngIf="isSubmitted">
+    <app-message-details
+      *ngFor="let msg of messages; let i = index"
+      [message]="msg"
+      [index]="i"
+      (delete)="deleteMessage($event)"
+    />
+  </div>
+</div>
